@@ -37,28 +37,43 @@ public class DynArray {
     }
 
     public void add(int element){
-        if(size >= array.length){
-                grow();
-        }
         array[size++] = element;
+        grow();
     }
+
+
 
     private void grow() {
 
+        if(size >= array.length) {
+            int[] temp = new int[array.length * 2];
 
-        int[] temp = new int[array.length * 2];
+            System.arraycopy(array, 0, temp, 0, array.length);
 
-        System.arraycopy(array,0,temp,0,array.length);
+            //for (int i = 0; i < array.length; i++) {
+            //  temp[i]= array[i];
+            //}
 
-        //for (int i = 0; i < array.length; i++) {
-        //  temp[i]= array[i];
-        //}
-
-        array = temp;
+            array = temp;
+        }
     }
 
     public void remove(){
         size--;
+    }
+
+
+    public void addFirst(int element){
+
+        size = size + 1;
+        int temp;
+        for (int i = 1; i < size; i++) {
+            temp = array[i];
+            array[i] = element;
+            element = temp;
+        }
+        grow();
+
     }
 
 
