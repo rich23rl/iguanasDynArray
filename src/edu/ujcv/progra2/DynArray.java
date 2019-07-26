@@ -6,7 +6,6 @@ public class DynArray {
     private int size;
 
     public DynArray(){
-
         array = new int[10];
         size = 0;
     }
@@ -16,7 +15,6 @@ public class DynArray {
         this.size = 0;
     }
 
-
     // array[n] = 3;
 
     public void setIndex(int n,int element){
@@ -25,7 +23,6 @@ public class DynArray {
         }
         array[n] = element;
     }
-
 
     // x = array[n];
 
@@ -41,19 +38,13 @@ public class DynArray {
         grow();
     }
 
-
-
     private void grow() {
-
         if(size >= array.length) {
             int[] temp = new int[array.length * 2];
-
             System.arraycopy(array, 0, temp, 0, array.length);
-
             //for (int i = 0; i < array.length; i++) {
             //  temp[i]= array[i];
             //}
-
             array = temp;
         }
     }
@@ -62,9 +53,7 @@ public class DynArray {
         size--;
     }
 
-
     public void addFirst(int element){
-
         size = size + 1;
         int temp;
         for (int i = 1; i < size; i++) {
@@ -73,11 +62,7 @@ public class DynArray {
             element = temp;
         }
         grow();
-
     }
-
-
-
 
     public String toString(){
        StringBuilder builder = new StringBuilder();
@@ -100,6 +85,5 @@ public class DynArray {
         builder.deleteCharAt(sizeb - 2);
 
         return builder.toString();
-
     }
 }
