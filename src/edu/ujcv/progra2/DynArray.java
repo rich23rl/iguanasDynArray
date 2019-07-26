@@ -1,25 +1,30 @@
 package edu.ujcv.progra2;
 
-public class DynArray {
+public class DynArray<T> {
 
-    private int[] array;
+    private T[] array;
+
+    public int getSize() {
+        return size;
+    }
+
     private int size;
 
     public DynArray(){
 
-        array = new int[10];
+        array = (T[])new Object[10];
         size = 0;
     }
 
     public DynArray(int size){
-        array = new int[size];
+        array = (T[])new Object[size];
         this.size = 0;
     }
 
 
     // array[n] = 3;
 
-    public void setIndex(int n,int element){
+    public void setIndex(int n,T element){
         if(n > size){
             throw new IndexOutOfBoundsException();
         }
@@ -27,16 +32,9 @@ public class DynArray {
     }
 
 
-    // x = array[n];
 
-    public int getIndex(int n){
-        if(n > size){
-            throw new IndexOutOfBoundsException();
-        }
-        return array[n];
-    }
 
-    public void add(int element){
+    public void add(T element){
         array[size++] = element;
         grow();
     }
@@ -46,7 +44,7 @@ public class DynArray {
     private void grow() {
 
         if(size >= array.length) {
-            int[] temp = new int[array.length * 2];
+            T[] temp = (T[])new Object[array.length * 2];
 
             System.arraycopy(array, 0, temp, 0, array.length);
 
@@ -63,11 +61,11 @@ public class DynArray {
     }
 
 
-    public void addFirst(int element){
+    public void addFirst(T element){
 
         size = size + 1;
-        int temp;
-        for (int i = 1; i < size; i++) {
+        T temp;
+        for (int i = 0; i < size; i++) {
             temp = array[i];
             array[i] = element;
             element = temp;
@@ -76,6 +74,19 @@ public class DynArray {
 
     }
 
+    public  void addIndex(int index, T element){
+        size++;
+        if(index>= size){
+            throw new IndexOutOfBoundsException();
+        }
+        T temp;
+        for (int i = index; i < size; i++) {
+            temp = array[i];
+            array[i] = element;
+            element = temp;
+        }
+        grow();
+    }
 
 
 
@@ -84,7 +95,7 @@ public class DynArray {
 
         for (int i = 0; i < array.length; i++) {
             if(i< size){
-                builder.append(array[i]);
+                builder.append(array[i].toString());
                 builder.append(',');
                 builder.append(' ');
             }else{
