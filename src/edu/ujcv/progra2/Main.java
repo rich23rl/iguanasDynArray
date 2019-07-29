@@ -3,7 +3,7 @@ package edu.ujcv.progra2;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
 
 
         DynArray areglo = new DynArray(5);
